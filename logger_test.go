@@ -5,8 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hellojqk/helper/logger"
-	_ "github.com/hellojqk/helper/logger/zerolog"
+	_ "github.com/hellojqk/helper/logger"
 	"github.com/hellojqk/helper/util"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/viper"
@@ -19,7 +18,7 @@ logger:
   console:
     noColor: true
     #日志等级 trace,debug,info,warn,error,fatal,panic 默认info
-    level: debug
+    level: info
   files:
     - name: app.log
       #日志路径
@@ -40,6 +39,7 @@ logger:
 }
 
 func TestLogger(t *testing.T) {
-	t.Log(logger.Conf)
 	log.Debug().Msg("来自zerolog")
+	log.Info().Msg("来自zerolog")
+	log.Warn().Msg("来自zerolog")
 }
