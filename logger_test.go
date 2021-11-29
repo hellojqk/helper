@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strings"
 	"testing"
+	"time"
 
 	_ "github.com/hellojqk/helper/logger"
 	"github.com/hellojqk/helper/util"
@@ -39,7 +40,7 @@ logger:
 }
 
 func TestLogger(t *testing.T) {
-	log.Debug().Msg("来自zerolog")
-	log.Info().Msg("来自zerolog")
-	log.Warn().Msg("来自zerolog")
+	log.Debug().Time("t", time.Now()).Msg("来自zerolog")
+	log.Info().Time("t", time.Now()).Msg("来自zerolog")
+	log.Warn().Time("t", time.Now()).Msg("来自zerolog")
 }

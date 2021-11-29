@@ -13,22 +13,24 @@ import (
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
+var defaultConfig = Config{
+	Console: ConsoleLogger{
+		NoColor: false,
+		Level:   "info",
+	},
+	Files: []FileLogger{{
+		Name:       "app.log",
+		Path:       "./log/",
+		Level:      "info",
+		MaxSize:    100,
+		MaxBackups: 10,
+		MaxAge:     30,
+		Compress:   true,
+	}},
+}
+
 func init() {
-	viper.SetDefault("logger", Config{
-		Console: ConsoleLogger{
-			NoColor: false,
-			Level:   "info",
-		},
-		Files: []FileLogger{{
-			Name:       "app.log",
-			Path:       "./log/",
-			Level:      "info",
-			MaxSize:    100,
-			MaxBackups: 10,
-			MaxAge:     30,
-			Compress:   true,
-		}},
-	})
+	viper.SetDefault("logger", defaultConfig)
 	util.WaitInitFuncsAdd(InitLogger)
 }
 
